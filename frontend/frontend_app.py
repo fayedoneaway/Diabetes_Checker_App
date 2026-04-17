@@ -39,18 +39,14 @@ st.info("""Enter all symptoms that apply to you. Separated by commas:
      Urinary Tract Infection""")
 symptom_answers = st.text_input(
     "Keywords acceptable:",
-    placeholder= "weight loss,"
-    " increased thirst,"
-    " nausea vomiting,"
-    " blurry vision,"
-    " UTI",
+    placeholder= "weight loss, increased thirst, nausea vomiting, blurry vision, UTI",
     key="symptoms")
 
 if st.button("Click Here to Check:"):
     st.session_state.show_result = True
 
 if st.session_state.show_result:
-    answer = symptom_answers
+    answer = symptom_answers or " "    
     cleared = answer.replace(",", " ").split()
     symptoms = [p.strip() for p in cleared if p.strip()]
 
