@@ -47,8 +47,7 @@ if st.button("Click Here to Check:"):
 
 if st.session_state.show_result:
     answer = symptom_answers or " "    
-    cleared = answer.replace(",", " ").split()
-    symptoms = [p.strip() for p in cleared if p.strip()]
+    symptoms = [s.strip() for s in answer.split(",") if s.strip()]
 
     payload= {
         "bmi": st.session_state["bmi"],
