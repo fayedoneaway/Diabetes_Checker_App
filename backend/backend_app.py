@@ -95,6 +95,6 @@ def predict(data: Input):
 
         return {"Prediction": label,
                 "Model Confidence": f"The model is {confidence_pct} confident based on BMI, age, and glucose."
-}
+        }
     return {"error": "Not enough symptoms to run prediction."}
 
