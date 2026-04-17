@@ -82,7 +82,7 @@ def predict(data: Input):
 
     if URGENT.issubset(set(matched)) and data.age <= 21:
         return {
-            "prediction: Possible Type 1 Diabetes. Consult doctor immediately.",
+            "prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
             "model confidence": "90%."
         }
 
