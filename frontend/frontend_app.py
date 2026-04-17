@@ -62,7 +62,7 @@ if st.session_state.show_result:
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/predict/diabetes",
+            "https://diabetes-checker-app-25ps.onrender.com/predict/diabetes",
             json= payload)
         result = response.json()
 
