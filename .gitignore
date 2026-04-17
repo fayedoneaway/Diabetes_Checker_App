@@ -1,0 +1,7 @@
+# Ignore System Folders
+venv/
+__pycache__/
+.idea/
+.git/
+
+
