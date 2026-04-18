@@ -8,7 +8,7 @@ import os
 app = FastAPI()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "logreg_3feature.pkl")
+model_path = "logreg_3feature.pkl"
 
 model = joblib.load(model_path)
 
@@ -83,7 +83,7 @@ def predict(data: Input):
     if URGENT.issubset(set(matched)) and data.age <= 21:
         return {
             "prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
-            "model confidence": "90%."
+            "model_confidence": "90%."
         }
 
     if len(matched) >= 2 and data.age >= 22:
