@@ -83,6 +83,12 @@ if st.session_state.show_result:
         result = response.json()
 
         st.subheader("Result")
+        prediction = result.get("Prediction", "")
+        confidence = result.get("Model_Confidence", "")
+
+        st.markdown(f"### {prediction}")
+        st.markdown(confidence)
+
         st.json(result)
 
     except Exception as e:
