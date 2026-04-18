@@ -79,8 +79,8 @@ def predict(data: Input):
             matched.extend(match_symptom(s))
 
     matched = list(set(matched))
-
-     if set(matched).intersection(URGENT) and data.age <= 21:
+    
+    if set(matched).intersection(URGENT) and data.age <= 21:
         return {
             "prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
             "model_confidence": "90%."
