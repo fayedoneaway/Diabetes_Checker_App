@@ -4,9 +4,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import joblib
 
-df = pd.read_csv("C:\\Users\\fayed\\myprojects\\pimaindiansproject\\pima-indians-diabetes.csv")
+df = pd.read_csv("C:\\Users\\fayed\\myprojects\\pima-indians-diabetes.csv")
 
-#Incorporating column headers
 df.columns = [
     "Pregnancies",
     "Glucose",
