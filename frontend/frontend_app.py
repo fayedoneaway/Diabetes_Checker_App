@@ -48,7 +48,7 @@ if st.button("Click Here to Check:"):
 if st.session_state.show_result:
     answer = symptom_answers or " "    
 
-    if None in [bmi, age, glucose]:
+     if None in [st.session_state["bmi"], st.session_state["age"], st.session_state["glucose"]]:
         st.error("Please fill out all fields before submitting.")
         st.stop()
 
@@ -59,6 +59,7 @@ if st.session_state.show_result:
         "age": st.session_state["age"],
         "glucose": st.session_state["glucose"],
         "symptoms": symptoms}
+    st.write("Payload:", payload)
 
     try:
         response = requests.post(
@@ -75,3 +76,7 @@ if st.session_state.show_result:
 if st.button("Do Another Check"):
     st.session_state.clear()
     st.rerun()
+
+
+st.write("Status:", response.status_code)
+st.write("Response:", response.text[:200])
