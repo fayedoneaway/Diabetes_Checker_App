@@ -52,7 +52,7 @@ if st.session_state.show_result:
         st.error("Please fill out all fields before submitting.")
         st.stop()
 
-    symptoms = [s.strip() for s in answer.split(",") if s.strip()]
+    symptoms = [s.strip() for s in answer.split(",") if s.strip()] or []
 
     payload= {
         "bmi": st.session_state["bmi"],
