@@ -46,7 +46,7 @@ def normalize(text: str) -> list[str]:
     text = text.lower()
     table = str.maketrans(",.!?;:", "      ")
     text = text.translate(table)
-    print("🔥 DEBUG:" text.split())
+    print("🔥 DEBUG:", text.split())
     return text.split()
 
 def match_symptom(text: str):
@@ -73,6 +73,7 @@ def get_urgent():
 
 @app.post("/predict/diabetes")
 def predict(data: Input):
+    print("🔥 DEBUG:", data.dict(), file=sys.stderr)
 
     df = pd.DataFrame([[data.bmi, data.age, data.glucose]],
         columns=["BMI", "Age", "Glucose"])
