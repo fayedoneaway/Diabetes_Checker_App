@@ -65,6 +65,8 @@ if st.session_state.show_result:
         response = requests.post(
             "https://diabetes-checker-app-25ps.onrender.com/predict/diabetes",
             json= payload)
+        st.write("Status:", response.status_code)
+        st.write("Response:", response.text[:200])
         result = response.json()
 
         st.subheader("Result")
@@ -78,5 +80,3 @@ if st.button("Do Another Check"):
     st.rerun()
 
 
-st.write("Status:", response.status_code)
-st.write("Response:", response.text[:200])
