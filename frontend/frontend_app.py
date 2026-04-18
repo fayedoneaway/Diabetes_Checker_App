@@ -3,32 +3,31 @@ import requests
 
 st.set_page_config(page_title="Diabetes Checker", page_icon="🔵")
 
-for key in ["bmi", "age", "glucose", "symptoms"]:
-    if key not in st.session_state:
-        st.session_state[key] = 0.0
-        st.session_state["age"] = 0
+if "bmi" not in st.session_state:
+    st.session_state["bmi"] = 0.0
+
+if "age" not in st.session_state:
+    st.session_state["age"] = 0
+
+if "glucose" not in st.session_state:
+    st.session_state["glucose"] = 0.0
+
+if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
+    st.session_state["symptoms"] = ""
 
 if "show_result" not in st.session_state:
     st.session_state.show_result = False
 
+
+
 st.title("🔵 Diabetes Checker App")
 st.write("Please enter all information required.")
 
-# def clear_bmi():
-#     if st.session_state["bmi"] == 0.0:
-#         st.session_state["bmi"] = None
-
-# def clear_age():
-#     if st.session_state["age"] == 0:
-#         st.session_state["age"] = None
-
-# def clear_glucose():
-#     if st.session_state["glucose"] == 0.0:
-#         st.session_state["glucose"] = None
+if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
+    st.session_state["symptoms"] = ""
 
 bmi = st.number_input("BMI (click box to edit)", min_value=0.0, step=0.1, key="bmi")
 age = st.number_input("Age (click box to edit)", min_value=0, step=1, key="age")
-
 glucose = st.number_input("Glucose Level (click box to edit)", min_value=0.0, step=1.0, key="glucose")
 
 st.info("""Enter all symptoms that apply to you. Separated by commas:
@@ -38,6 +37,7 @@ st.info("""Enter all symptoms that apply to you. Separated by commas:
      Nausea and Vomiting,
      Blurry Vision,
      Urinary Tract Infection""")
+
 symptom_answers = st.text_input(
     "Keywords acceptable:",
     placeholder= "weight loss, increased thirst, nausea vomiting, blurry vision, UTI",
@@ -49,7 +49,10 @@ if st.button("Click Here to Check:"):
 if st.session_state.show_result:
     answer = symptom_answers or " "    
 
-    if None in [st.session_state["bmi"], st.session_state["age"], st.session_state["glucose"]]:
+    if None in [
+        st.session_state["bmi"], 
+        st.session_state["age"], 
+        st.session_state["glucose"]]:
         st.error("Please fill out all fields before submitting.")
         st.stop()
 
