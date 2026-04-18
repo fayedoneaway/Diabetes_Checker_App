@@ -47,6 +47,11 @@ if st.button("Click Here to Check:"):
 
 if st.session_state.show_result:
     answer = symptom_answers or " "    
+
+    if None in [bmi, age, glucose]:
+        st.error("Please fill out all fields before submitting.")
+        st.stop()
+
     symptoms = [s.strip() for s in answer.split(",") if s.strip()]
 
     payload= {
