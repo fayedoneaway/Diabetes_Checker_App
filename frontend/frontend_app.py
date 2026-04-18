@@ -5,7 +5,8 @@ st.set_page_config(page_title="Diabetes Checker", page_icon="🔵")
 
 for key in ["bmi", "age", "glucose", "symptoms"]:
     if key not in st.session_state:
-        st.session_state[key] = None
+        st.session_state[key] = 0.0
+        st.session_state["age"] = 0
 
 if "show_result" not in st.session_state:
     st.session_state.show_result = False
@@ -13,17 +14,17 @@ if "show_result" not in st.session_state:
 st.title("🔵 Diabetes Checker App")
 st.write("Please enter all information required.")
 
-def clear_bmi():
-    if st.session_state["bmi"] == 0.0:
-        st.session_state["bmi"] = None
+# def clear_bmi():
+#     if st.session_state["bmi"] == 0.0:
+#         st.session_state["bmi"] = None
 
-def clear_age():
-    if st.session_state["age"] == 0:
-        st.session_state["age"] = None
+# def clear_age():
+#     if st.session_state["age"] == 0:
+#         st.session_state["age"] = None
 
-def clear_glucose():
-    if st.session_state["glucose"] == 0.0:
-        st.session_state["glucose"] = None
+# def clear_glucose():
+#     if st.session_state["glucose"] == 0.0:
+#         st.session_state["glucose"] = None
 
 bmi = st.number_input("BMI (click box to edit)", min_value=0.0, step=0.1, key="bmi")
 age = st.number_input("Age (click box to edit)", min_value=0, step=1, key="age")
