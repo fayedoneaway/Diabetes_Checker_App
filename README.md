@@ -1,4 +1,6 @@
 
+Live App: https://diabetescheckerapp-brehkxgd8mkr83ssjqkuaw.streamlit.app/	
+
 1. OVERVIEW:
 This project predicts diabetes or no diabetes based on the person's 
 age, bmi, glucose level and symptoms.
