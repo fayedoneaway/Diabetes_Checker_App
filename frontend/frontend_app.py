@@ -3,21 +3,15 @@ import requests
 
 st.set_page_config(page_title="Diabetes Checker", page_icon="🔵")
 
-if "bmi" not in st.session_state:
-    st.session_state["bmi"] = None
-
-if "age" not in st.session_state:
-    st.session_state["age"] = None
-
-if "glucose" not in st.session_state:
-    st.session_state["glucose"] = None
-
-if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
-    st.session_state["symptoms"] = ""
-
-if "show_result" not in st.session_state:
-    st.session_state.show_result = False
-
+for key, default in {
+    "bmi": 0.0,
+    "age": 0,
+    "glucose": 0.0,
+    "symptoms": "",
+    "show_result": False,
+}.items():
+    if key not in st.session_state:
+        st.session_state[key] = default
 
 
 st.title("🔵 Diabetes Checker App")
@@ -35,6 +29,11 @@ if "age" not in st.session_state:
 if "glucose" not in st.session_state:
     st.session_state["glucose"] = 0.0
 
+if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
+    st.session_state["symptoms"] = ""
+
+if "show_result" not in st.session_state:
+    st.session_state.show_result = False
 
 
 bmi = st.number_input("BMI (click box to edit)", min_value=0.0, step=0.1, key="bmi")
@@ -74,14 +73,11 @@ if st.session_state.show_result:
         "age": st.session_state["age"],
         "glucose": st.session_state["glucose"],
         "symptoms": symptoms}
-    st.write("Payload:", payload)
 
     try:
         response = requests.post(
             "https://diabetes-checker-app-25ps.onrender.com/predict/diabetes",
             json= payload)
-        st.write("Status:", response.status_code)
-        st.write("Response:", response.text[:200])
         result = response.json()
 
         st.subheader("Result")
