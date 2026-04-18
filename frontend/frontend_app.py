@@ -26,6 +26,17 @@ st.write("Please enter all information required.")
 if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
     st.session_state["symptoms"] = ""
 
+if "bmi" not in st.session_state:
+    st.session_state["bmi"] = 0.0
+
+if "age" not in st.session_state:
+    st.session_state["age"] = 0
+
+if "glucose" not in st.session_state:
+    st.session_state["glucose"] = 0.0
+
+
+
 bmi = st.number_input("BMI (click box to edit)", min_value=0.0, step=0.1, key="bmi")
 age = st.number_input("Age (click box to edit)", min_value=0, step=1, key="age")
 glucose = st.number_input("Glucose Level (click box to edit)", min_value=0.0, step=1.0, key="glucose")
