@@ -17,7 +17,7 @@ class Input(BaseModel):
     bmi: float
     age: float
     glucose: float
-    symptoms: list[str] 
+    symptoms: list[str] = []
 
 @app.get("/")
 def home():
