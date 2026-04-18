@@ -82,7 +82,7 @@ def predict(data: Input):
     if set(matched).intersection(URGENT) and data.age <= 21:
         return {
             "Prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
-            "Model_Confidence": "90%."
+            "Model_Confidence": f"The model is 90% confident based on age and symptoms."
         }
 
     if len(matched) >= 2 and data.age >= 22:
