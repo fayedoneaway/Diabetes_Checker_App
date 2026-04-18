@@ -4,13 +4,13 @@ import requests
 st.set_page_config(page_title="Diabetes Checker", page_icon="🔵")
 
 if "bmi" not in st.session_state:
-    st.session_state["bmi"] = 0.0
+    st.session_state["bmi"] = None
 
 if "age" not in st.session_state:
-    st.session_state["age"] = 0
+    st.session_state["age"] = None
 
 if "glucose" not in st.session_state:
-    st.session_state["glucose"] = 0.0
+    st.session_state["glucose"] = None
 
 if "symptoms" not in st.session_state or not isinstance(st.session_state["symptoms"], str):
     st.session_state["symptoms"] = ""
