@@ -80,7 +80,7 @@ def predict(data: Input):
 
     matched = list(set(matched))
 
-    if URGENT.issubset(set(matched)) and data.age <= 21:
+     if set(matched).intersection(URGENT) and data.age <= 21:
         return {
             "prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
             "model_confidence": "90%."
