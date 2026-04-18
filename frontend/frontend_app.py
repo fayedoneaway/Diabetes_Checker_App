@@ -80,7 +80,6 @@ if st.session_state.show_result:
             json= payload)
         result = response.json()
 
-        st.success("Result")
         prediction = result.get("Prediction", "")
         confidence = result.get("Model_Confidence", "")
 
