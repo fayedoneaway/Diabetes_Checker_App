@@ -79,6 +79,8 @@ def predict(data: Input):
             matched.extend(match_symptom(s))
 
     matched = list(set(matched))
+    print("🔥 DEBUG:", data.dict(), file=sys.stderr)
+    print("🔥 DEBUG:", repr(matched))
     
     if set(matched).intersection(URGENT) and data.age <= 21:
         return {
