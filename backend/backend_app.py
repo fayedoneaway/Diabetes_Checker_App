@@ -85,7 +85,7 @@ def predict(data: Input):
             "Model_Confidence": f"The model is 90% confident based on age and symptoms."
         }
 
-    if len(matched) >= 2 and data.age >= 22:
+    if len(matched) >= 1 and data.age >= 22:
         probs = model.predict_proba(df)[0]
         prediction = model.predict(df)[0]
 
