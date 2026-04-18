@@ -78,18 +78,14 @@ if st.session_state.show_result:
         response = requests.post(
             "https://diabetes-checker-app-25ps.onrender.com/predict/diabetes",
             json= payload)
-        st.write("Status:", response.status_code)
-        st.write("Response:", response.text[:200])
         result = response.json()
 
-        st.subheader("Result")
+        st.success("Result")
         prediction = result.get("Prediction", "")
         confidence = result.get("Model_Confidence", "")
 
-        st.markdown(f"### {prediction}")
-        st.markdown(confidence)
-
-        st.json(result)
+        st.success(f"### {prediction}")
+        st.success(confidence)
 
     except Exception as e:
         st.error(f"Error connecting to server: {e}")
