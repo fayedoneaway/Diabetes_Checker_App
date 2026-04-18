@@ -12,8 +12,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = "logreg_3feature.pkl"
 
 model = joblib.load(model_path)
-print("🔥 DEBUG: model loaded")
-
 
 class Input(BaseModel):
     bmi: float
@@ -47,20 +45,16 @@ def normalize(text: str) -> list[str]:
     text = text.lower()
     table = str.maketrans(",.!?;:", "      ")
     text = text.translate(table)
-    print("🔥 DEBUG:", text.split())
     return text.split()
 
 def match_symptom(text: str):
     tokens = normalize(text)
     matches = []
-    print("🔥 DEBUG:", tokens)
 
     for code, keywords in SYMPTOM_KEYWORDS.items():
         for token in tokens:
             if token in keywords:
                 matches.append(code)
-                print("🔥 DEBUG:", matches)
-
     return matches
 
 @app.get("/symptoms")
@@ -74,7 +68,6 @@ def get_urgent():
 
 @app.post("/predict/diabetes")
 def predict(data: Input):
-    print("🔥 DEBUG:", data.dict(), file=sys.stderr)
 
     df = pd.DataFrame([[data.bmi, data.age, data.glucose]],
         columns=["BMI", "Age", "Glucose"])
@@ -83,11 +76,8 @@ def predict(data: Input):
     if data.symptoms:
         for s in data.symptoms:
             matched.extend(match_symptom(s))
-            print("🔥 DEBUG:", repr(matched))
 
     matched = list(set(matched))
-    print("🔥 DEBUG:", data.dict(), file=sys.stderr)
-    print("🔥 DEBUG:", repr(matched))
     
     if set(matched).intersection(URGENT) and data.age <= 21:
         return {
