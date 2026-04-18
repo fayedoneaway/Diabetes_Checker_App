@@ -48,7 +48,7 @@ if st.button("Click Here to Check:"):
 if st.session_state.show_result:
     answer = symptom_answers or " "    
 
-     if None in [st.session_state["bmi"], st.session_state["age"], st.session_state["glucose"]]:
+    if None in [st.session_state["bmi"], st.session_state["age"], st.session_state["glucose"]]:
         st.error("Please fill out all fields before submitting.")
         st.stop()
 
