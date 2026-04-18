@@ -81,8 +81,8 @@ def predict(data: Input):
     
     if set(matched).intersection(URGENT) and data.age <= 21:
         return {
-            "prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
-            "model_confidence": "90%."
+            "Prediction": "Possible Type 1 Diabetes. Consult doctor immediately.",
+            "Model_Confidence": "90%."
         }
 
     if len(matched) >= 2 and data.age >= 22:
@@ -93,7 +93,7 @@ def predict(data: Input):
         confidence_pct = f"{max(probs) * 100:.0f}%"
 
         return {"Prediction": label,
-                "Model Confidence": f"The model is {confidence_pct} confident based on BMI, age, and glucose."
+                "Model_Confidence": f"The model is {confidence_pct} confident based on BMI, age, and glucose."
         }
     return {"error": "Not enough symptoms to run prediction."}
 
